@@ -55,18 +55,25 @@ Now that you have successfully run the app, let's modify it.
 
    For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
-## Congratulations! :tada:
+## Project Structure:
+App.js: The entry point of the application. It sets up the Redux provider and renders the UserList component.
+ios and android: Platform-specific code for iOS and Android.
+src/components/UserList.js: The component that displays the list of users and handles infinite scrolling.
+src/redux/store.js: Configures the Redux store with redux-thunk middleware.
+src/redux/userActions.js: Contains async actions for fetching user data from the API.
+src/redux/userSelectors.js: Contains selectors to retrieve specific pieces of state from the Redux store.
+src/redux/userSlice.js: Defines the Redux slice for managing user data, including actions and reducers.
 
-You've successfully run and modified your React Native App. :partying_face:
 
-### Now what?
+## Key Decisions
+### State Management with Redux
+We chose Redux for state management to handle user data and pagination state centrally. This helps in maintaining a single source of truth for the application's state and makes it easier to manage and debug the application.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+### Async Actions with redux-thunk
+redux-thunk is used for handling asynchronous actions such as fetching user data from the API. It allows us to write action creators that return a function instead of an action, enabling us to perform async operations and dispatch actions based on the result.
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### Infinite Scrolling with FlatList
+The FlatList component from React Native is used to display the list of users and handle infinite scrolling. The onEndReached prop is used to detect when the end of the list is reached, triggering the fetch of more user data.
 
 # Learn More
 
